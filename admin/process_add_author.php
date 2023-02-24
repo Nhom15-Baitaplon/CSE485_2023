@@ -6,7 +6,7 @@
          // Bước 01: Kết nối tới DB Server
         $conn = mysqli_connect('localhost','root','','btth01_cse485');
         if(!$conn){
-        die('Kết nối tới Server lỗi');
+        die('Connection failed:');
         }
         // Bước 02: Thực hiện truy vấn
         $sql = "INSERT INTO tacgia(ten_tgia) VALUES('$ten_tacgia')";
@@ -15,10 +15,10 @@
         
         // Bước 03: Xử lý kết quả trả về
         if(($result) > 0){
-         echo"Bản ghi đã được lưu";              
+         echo"New record created successfully";              
          }
         else{
-            echo"Lỗi";
+            echo"Error: ";
         }
         
     

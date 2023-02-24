@@ -46,8 +46,8 @@
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin tác giả</h3>
-                <form action="process_edit_author.php" method="post">
+                <h3 class="text-center text-uppercase fw-bold">Xóa tác giả</h3>
+                <form action="process_delete_author.php" method="post">
                 <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatId">Mã tác giả</span>
                         <input type="1" class="form-control" name="ma_tgia" >
@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="form-group  float-end ">
-                        <input type="submit" value="Lưu lại" class="btn btn-success">
+                        <input type="submit" value="Xóa" class="btn btn-success">
                         <a href="author.php" class="btn btn-warning ">Quay lại</a>
                     </div>
                 </form>
