@@ -42,41 +42,46 @@
         </nav>
 
     </header>
-    <main class="container mt-5 mb-5">
+    <main class="container mt-2 mb-2">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <a href="add_author.php" class="btn btn-success">Thêm mới</a>
+                <a href="add_author.php" class="btn btn-success"><i class="fa-solid fa-user-plus"></i>Thêm tác giả</a>
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Tên tác giả</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
+                            <th scope="col">Sửa</th>
+                            <th scope="col">Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Khánh Ngọc</td>
-                            <td>
-                                <a href="edit_author.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Sandy</td>
-                            <td>
-                                <a href="edit_author.php?id=2"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        <!-- Đoạn này thay đổi DL theo CSDL -->
+                     <?php
+                     // Bước 01: Kết nối tới DB Server
+                     $conn = mysqli_connect('localhost','root','','btth01_cse485');
+                     if(!$conn){
+                       die('Kết nối tới Server lỗi');
+                         }
+                      // Bước 02: Thực hiện truy vấn
+                     $sql = "SELECT *FROM tacgia";
+                      $result = mysqli_query($conn, $sql); 
+
+                      // Bước 03: Xử lý kết quả trả về
+                      if(mysqli_num_rows($result) > 0){
+                      while($row = mysqli_fetch_assoc($result)){
+        
+                       echo'<tr>';
+                      echo  '<th scope="row">'.$row['ma_tgia'].'</th>';
+                      echo  '<td>'.$row['ten_tgia'].'</td>';   
+                      echo  '<td><a href="edit_author.php?id='.$row['ma_tgia'].'"><i class="fa-solid fa-user-pen"></i></a></td>'; //phương thức truyền nhận dữ liệu trong php
+                      echo  '<td><a href="delete_author.php?id='.$row['ma_tgia'].'"><i class="fa-solid fa-user-xmark"></i></a></td>';
+                      echo'</tr>';
+        
+            }
+        }
+      ?>
                        
                     </tbody>
                 </table>

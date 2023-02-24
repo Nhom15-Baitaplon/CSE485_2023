@@ -47,11 +47,13 @@
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Thêm mới tác giả</h3>
-                <form action="process_add_category.php" method="post">
+                <!-- truyền dữ liệu qua form bằng phương thức post -->
+                <form action="process_add_category.php" method="post"> 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên tác giả</span>
-                        <input type="text" class="form-control" name="txtCatName" >
+                        <input type="text" class="form-control" name="ten_tgia" >
                     </div>
+
 
                     <div class="form-group  float-end ">
                         <input type="submit" value="Thêm" class="btn btn-success">
