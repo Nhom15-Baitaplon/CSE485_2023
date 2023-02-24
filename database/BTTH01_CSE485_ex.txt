@@ -1,8 +1,0 @@
-a) Liệt kê các bài viết về các bài hát thuộc thể loại nhạc trữ tình
-SELECT*FROM baiviet,theloai WHERE baiviet.ma_tloai = theloai.ma_tloai AND ten_tloai="Nhạc trữ tình";
-
-b)Liệt kê các bài viết của tác giả"Nhacvietplus"
-SELECT *FROM baiviet, tacgia WHERE baiviet.ma_tgia=tacgia.ma_tgia AND ten_tgia="Nhacvietplus";
-
-g)Liệt kê các bài viết về các bài hát có tựa bài hát chứa 1 trong các từ "yêu","thương","anh","em"
- SELECT*FROM baiviet WHERE ten_bhat="yêu" OR ten_bhat="thương" OR ten_bhat="anh" OR ten_bhat="em";
