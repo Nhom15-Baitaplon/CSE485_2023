@@ -18,7 +18,8 @@
     // Bước 03: Xử lý kết quả trả về
     if(($result) > 0)
     {
-     echo"Record Deleted successfully";              
+     echo"Record Deleted successfully"; 
+     header("Location: author.php") ;               
     }
     else{
         echo"Error Deleting record:";

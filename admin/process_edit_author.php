@@ -18,7 +18,8 @@
     // Bước 03: Xử lý kết quả trả về
     if(($result) > 0)
     {
-     echo"Record updated successfully";              
+     echo"Record updated successfully";  
+     header("Location: author.php") ;              
     }
     else{
         echo"Error updating record:";

@@ -15,7 +15,8 @@
         
         // Bước 03: Xử lý kết quả trả về
         if(($result) > 0){
-         echo"New record created successfully";              
+         echo"New record created successfully";  
+         header("Location: author.php") ;           
          }
         else{
             echo"Error: ";
