@@ -95,7 +95,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-center ">
-                            Don't have an account?<a href="#" class="text-warning text-decoration-none ms-3">Sign Up</a>
+                            Don't have an account?<a href="register.php" class="text-warning text-decoration-none ms-3">Sign Up</a>
                         </div>
                         <div class="d-flex justify-content-center">
                             <a href="#" class="text-warning text-decoration-none">Forgot your password?</a>

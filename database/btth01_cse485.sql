@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2023 at 10:03 AM
+-- Generation Time: Feb 27, 2023 at 06:01 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -82,7 +82,31 @@ INSERT INTO `tacgia` (`ma_tgia`, `ten_tgia`, `hinh_tgia`) VALUES
 (5, 'Khánh Ngọc', NULL),
 (6, 'Night Stalker', NULL),
 (7, 'Phạm Phương Anh', NULL),
-(8, 'Tâm tình', NULL);
+(8, 'Tâm tình', NULL),
+(19, 'Vũ Đình Hiển 6868', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user`
+--
+
+CREATE TABLE `tbl_user` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_user`
+--
+
+INSERT INTO `tbl_user` (`user_id`, `user_name`, `password`) VALUES
+(1, 'admin', 'admin'),
+(2, 'Vu Dinh Hien', '123'),
+(3, 'admin', 'xxxx'),
+(4, 'admin', 'xxxx'),
+(5, 'QSDF', '555555');
 
 -- --------------------------------------------------------
 
@@ -128,6 +152,12 @@ ALTER TABLE `tacgia`
   ADD PRIMARY KEY (`ma_tgia`);
 
 --
+-- Indexes for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- Indexes for table `theloai`
 --
 ALTER TABLE `theloai`
@@ -147,7 +177,13 @@ ALTER TABLE `baiviet`
 -- AUTO_INCREMENT for table `tacgia`
 --
 ALTER TABLE `tacgia`
-  MODIFY `ma_tgia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ma_tgia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `theloai`
