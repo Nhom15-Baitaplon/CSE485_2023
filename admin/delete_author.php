@@ -1,3 +1,23 @@
+<?php
+//lấy dữ liệu cần xóa
+$ma_tgia = $_GET['id'];
+//echo $ma_tgia;
+   //Kết nối tới DB Server
+    $conn = mysqli_connect('localhost','root','','btth01_cse485');
+    if(!$conn)
+    {
+     die('Connection failed: ');
+    }
+    //cau lenh
+    $xoa_sql = "DELETE FROM tacgia WHERE ma_tgia=$ma_tgia";
+
+    mysqli_query($conn,$xoa_sql);
+    //echo "<h1>Xóa thành cong </h1>"
+    header("Location: author.php")
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

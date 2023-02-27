@@ -1,3 +1,22 @@
+<?php
+    //lay id can edit
+    $ma_tgia = $_GET['id'];
+
+    //Kết nối tới DB Server
+    $conn = mysqli_connect('localhost','root','','btth01_cse485');
+    if(!$conn)
+    {
+     die('Connection failed: ');
+    }
+    //cau lenh de lay thong tin ve sinh vien 
+    $edit_sql = "SELECT *FROM tacgia WHERE ma_tgia=$ma_tgia";
+
+    $result = mysqli_query($conn,$edit_sql);
+    $row = mysqli_fetch_assoc($result);
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,12 +69,12 @@
                 <form action="process_edit_author.php" method="post">
                 <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatId">Mã tác giả</span>
-                        <input type="1" class="form-control" name="ma_tgia" >
+                        <input type="1" class="form-control" name="ma_tgia" value="<?php echo $row['ma_tgia']?>" >
                     </div>
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên tác giả</span>
-                        <input type="text" class="form-control" name="ten_tgia" value = "">
+                        <input type="text" class="form-control" name="ten_tgia" value="<?php echo $row['ten_tgia']?>">
                     </div>
 
                     <div class="form-group  float-end ">

@@ -1,11 +1,25 @@
-<?php if(isset($_POST['Login'])){
-     $username = $_POST['username']; 
-     $password = $_POST['password']; 
-     if($username=='admin' && $password=='admin')
-     { header('location:admin'); } 
-     } 
-     ?>
+<?php
+   
+     if(isset($_POST['Login'])==true){
+        $username = $_POST['user_name'];
+        $password = $_POST['password'];
+        $conn = new PDO("mysql:host=localhost;dbname=btth01_cse485;charset=utf8","root","");
+        $conn->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM tbl_user where $username='user_name' AND $password='password' ";
+        $stmt= $conn->prepare($sql);
+        $stmt->execute([$username,$password ]);
+        if($stmt->rowCount() ==1){
+            $user = $stmt->fetch();
+            print_r($user);
+        }
+        else{
+              echo"đăng nhập sai";
+        }
+     }
 
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,22 +74,22 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="admin" method="POST">
+                        <form  method="POST">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtUser"><i class="fas fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="username" name="username" >
+                                <input value="<?php if(isset($username)==true)echo $username ?>" type="text" class="form-control" placeholder="user_name" name="user_name" >
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtPass"><i class="fas fa-key"></i></span>
-                                <input type="text" class="form-control" placeholder="password" name="password" >
+                                <input value="<?php if(isset($password)==true)echo $password ?>" type="text" class="form-control" placeholder="password" name="password" >
                             </div>
                             
                             <div class="row align-items-center remember">
                                 <input type="checkbox">Remember Me
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Login" class="btn float-end login_btn">
+                                <input type="submit" name="Login" value="Login" class="btn float-end login_btn">
                             </div>
                         </form>
                     </div>

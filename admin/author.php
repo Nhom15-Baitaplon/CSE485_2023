@@ -70,14 +70,15 @@
 
                       // Bước 03: Xử lý kết quả trả về
                       if(mysqli_num_rows($result) > 0){
-                      while($row = mysqli_fetch_assoc($result)){
-        
-                       echo'<tr>';
-                      echo  '<th scope="row">'.$row['ma_tgia'].'</th>';
-                      echo  '<td>'.$row['ten_tgia'].'</td>';   
-                      echo  '<td><a href="edit_author.php?id='.$row['ma_tgia'].'"><i class="fa-solid fa-user-pen"></i></a></td>'; //phương thức truyền nhận dữ liệu trong php
-                      echo  '<td><a href="delete_author.php?id='.$row['ma_tgia'].'"><i class="fa-solid fa-user-xmark"></i></a></td>';
-                      echo'</tr>';
+                      while($r = mysqli_fetch_assoc($result)){
+                        ?>
+                        <tr>
+                            <td><?php echo $r['ma_tgia'];?></td>
+                            <td><?php echo $r['ten_tgia'];?></td>
+                            <td><a href="edit_author.php?id=<?php echo $r['ma_tgia'];?>"><i class="fa-solid fa-user-pen"></i></a></td>
+                            <td><a onclick="return confirm('Bạn có muốn xóa Tác giả Không')" href="delete_author.php?id=<?php echo $r['ma_tgia'];?>"><i class="fa-solid fa-user-xmark"></i></a></td>
+                        </tr>
+                      <?php
         
             }
         }

@@ -1,6 +1,7 @@
 <?php
+    $ma_tacgia = $_POST['ma_tgia'];
     $ten_tacgia = $_POST['ten_tgia'];
-
+    
 
     
          // Bước 01: Kết nối tới DB Server
