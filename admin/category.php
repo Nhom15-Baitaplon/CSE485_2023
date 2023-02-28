@@ -1,18 +1,3 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-
-
-// Create connection
-$conn = new mysqli($servername, $username, $password);
-
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully";
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,26 +57,30 @@ echo "Connected successfully";
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Nhạc trữ tình</td>
-                            <td>
-                                <a href="edit_category.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Nhạc cách mạng</td>
-                            <td>
-                                <a href="edit_category.php?id=2"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
+                                <?php
+                                // Bước 01: Kết nối tới DB Server
+                                $conn = mysqli_connect('localhost','root','','btth01_cse485');
+                                if(!$conn){
+                                die('Kết nối tới Server lỗi');
+                                    }
+                                // Bước 02: Thực hiện truy vấn
+                                $sql = "SELECT *FROM theloai";
+                                $result = mysqli_query($conn, $sql); 
+
+                                // Bước 03: Xử lý kết quả trả về
+                                if(mysqli_num_rows($result) > 0){
+                                while($row = mysqli_fetch_assoc($result)){
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $row['ma_tloai'];?></td>
+                                        <td><?php echo $row['ten_tloai'];?></td>
+                                        <td><a href="edit_category.php?id=<?php echo $row['ma_tloai'];?>"><i class="fa-solid fa-user-pen"></i></a></td>
+                                        <td><a href="delete_category.php?id=<?php echo $row['ma_tloai'];?>"><i class="fa-solid fa-user-xmark"></i></a></td>
+                                    </tr>
+                                  <?php
+                                }
+                                }
+                    ?>
                        
                     </tbody>
                 </table>

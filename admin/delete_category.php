@@ -1,19 +1,25 @@
 <?php
-    //lay id can edit
-    $ma_bviet = $_GET['id'];
-
-    //Kết nối tới DB Server
+//lấy dữ liệu cần xóa
+$ma_tloai = $_GET['id'];
+//echo $ma_tgia;
+   //Kết nối tới DB Server
     $conn = mysqli_connect('localhost','root','','btth01_cse485');
     if(!$conn)
     {
      die('Connection failed: ');
     }
-    //cau lenh de lay thong tin ve sinh vien 
+    //cau lenh
+    $xoa_kn = "SET FOREIGN_KEY_CHECKS = 0";
+    $xoa_sql = "DELETE FROM theloai WHERE `theloai`.`ma_tloai` = $ma_tloai";
+    $tao_kn = "SET FOREIGN_KEY_CHECKS = 1";
+    mysqli_query($conn,$xoa_kn);
+    mysqli_query($conn,$xoa_sql);
+    mysqli_query($conn,$tao_kn);
+    //echo "<h1>Xóa thành cong </h1>"
+    header("Location: category.php")
 
-    $edit_sql = "SELECT * FROM baiviet WHERE ma_bviet=$ma_bviet";
 
-    $result = mysqli_query($conn,$edit_sql);
-    $row = mysqli_fetch_assoc($result);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,13 +51,13 @@
                         <a class="nav-link" href="../index.php">Trang ngoài</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="category.php">Thể loại</a>
+                        <a class="nav-link active fw-bold " href="category.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="author.php">Tác giả</a>
+                        <a class="nav-link " href="author.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" href="article.php">Bài viết</a>
+                        <a class="nav-link" href="article.php">Bài viết</a>
                     </li>
                 </ul>
                 </div>
@@ -63,21 +69,21 @@
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin bài viết</h3>
-                <form action="sql_baiviet.php" method="post">
+                <h3 class="text-center text-uppercase fw-bold">Xóa thể loại</h3>
+                <form action="sql_theloai.php" method="post">
                 <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblCatId">Mã bài viết</span>
-                        <input type="text" class="form-control" name="ma_bviet" readonly value='<?php echo $row['ma_bviet']?>'>
+                        <span class="input-group-text" id="lblCatId">Mã thể loại</span>
+                        <input type="1" class="form-control" name="ma_tloai" >
                     </div>
 
                     <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblCatName">Tên bài viết</span>
-                        <input type="text" class="form-control" name="tieude" value = '<?php echo $row['tieude']?>'>
+                        <span class="input-group-text" id="lblCatName">Tên thể loại</span>
+                        <input type="text" class="form-control" name="ten_tloai" value = "">
                     </div>
 
                     <div class="form-group  float-end ">
-                        <input type="submit" value="Lưu lại" class="btn btn-success">
-                        <a href="article.php" class="btn btn-warning ">Quay lại</a>
+                        <input type="submit" value="Xóa" class="btn btn-success">
+                        <a href="category.php" class="btn btn-warning ">Quay lại</a>
                     </div>
                 </form>
             </div>

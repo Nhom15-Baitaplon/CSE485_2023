@@ -57,27 +57,27 @@
                         </tr>
                     </thead>
                     <tbody>
+                            <?php 
+                                    $conn = mysqli_connect('localhost','root','','btth01_cse485');
+                                    if(!$conn){
+                                        die('Kết nối tới Server lỗi');
+                                        }
+                                        $sql = "SELECT *FROM baiviet";
+                                        $result = mysqli_query($conn, $sql); 
+                                        if(mysqli_num_rows($result) > 0){
+                                            while($row = mysqli_fetch_assoc($result)){          
+                                   ?>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Lòng mẹ</td>
-                            <td>
-                                <a href="edit_article.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Cảm ơn em đã rời xa anh</td>
-                            <td>
-                                <a href="edit_article.php?id=2"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                       
+                            <th scope="row"><?php echo $row['ma_bviet']; ?></th>                          
+                            <td><?php echo $row['tieude']; ?></td>
+                            <td><a href="edit_article.php?id=<?php echo $row['ma_bviet'];?>"><i class="fa-solid fa-user-pen"></i></a></td>
+                            <td><a href="article.php?id=<?php echo $row['ma_bviet'];?>"><i class="fa-solid fa-user-xmark"></i></a></td>
+                        </tr>                       
+                                <?php
+        
+                                     }
+                                  }
+                              ?>
                     </tbody>
                 </table>
             </div>

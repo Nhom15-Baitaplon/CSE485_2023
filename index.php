@@ -67,62 +67,38 @@
     <main class="container-fluid mt-3">
         <h3 class="text-center text-uppercase mb-3 text-primary">TOP bài hát yêu thích</h3>
         <div class="row">
-            <div class="col-sm-4">
-                <div class="card mb-2" style="width: 100%;">
-                    <a href="detail.php" class="text-decoration-none">
-                        <img src="images/songs/cayvagio.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">
-                                Cây, lá và gió
-                            </h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
+        <?php
+                     // Bước 01: Kết nối tới DB Server
+                     $conn = mysqli_connect('localhost','root','','btth01_cse485');
+                     if(!$conn){
+                       die('Kết nối tới Server lỗi');
+                         }
+                      // Bước 02: Thực hiện truy vấn
+                      $sql = "SELECT *FROM baiviet";
+                      $result = mysqli_query($conn, $sql); 
 
-            <div class="col-sm-4">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs/csmt.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Cuộc sống mến thương</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
+                      // Bước 03: Xử lý kết quả trả về
+                      if(mysqli_num_rows($result) > 0){
+                      while($row = mysqli_fetch_assoc($result)){
+                          echo ' <div class="col-sm-3">
+                          <div class="card mb-2" style="width: 100%;">
+                              <a href="detail.php" class="text-decoration-none">
+                                  <img src="images/songs/'.$row['hinhanh'].'" class="card-img-top" alt="...">
+                                  <div class="card-body">
+                                      <h5 class="card-title text-center">
+                                          '.$row['ten_bhat'].'
+                                      </h5>
+                                  </div>
+                              </a>
+                          </div>
+                      </div>';
+                      }
+                    }
+                        
+                      
+           
 
-            <div class="col-sm-4">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs//longme.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Lòng mẹ</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs/phoipha.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Phôi pha</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs/noitinhyeubatdau.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center my-title">
-                            <a href="" class="text-decoration-none">Nơi tình yêu bắt đầu</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
+        ?>
         </div>
     </main>
     <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2" style="height:80px">

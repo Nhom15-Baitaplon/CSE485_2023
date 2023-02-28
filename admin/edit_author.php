@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Sửa thông tin tác giả</h3>
-                <form action="process_edit_author.php" method="post">
+                <form action="sql_theloai.php" method="post">
                 <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatId">Mã tác giả</span>
                         <input type="1" class="form-control" name="ma_tgia" value="<?php echo $row['ma_tgia']?>" >

@@ -1,3 +1,19 @@
+<?php
+    //lay id can edit
+    $ma_tloai = $_GET['id'];
+
+    //Kết nối tới DB Server
+    $conn = mysqli_connect('localhost','root','','btth01_cse485');
+    if(!$conn)
+    {
+     die('Connection failed: ');
+    }
+    //cau lenh de lay thong tin ve sinh vien 
+    $edit_sql = "SELECT *FROM theloai WHERE ma_tloai=$ma_tloai";
+
+    $result = mysqli_query($conn,$edit_sql);
+    $row = mysqli_fetch_assoc($result);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,15 +63,15 @@
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Sửa thông tin thể loại</h3>
-                <form action="process_add_category.php" method="post">
+                <form action="sql_theloai.php" method="post">
                 <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatId">Mã thể loại</span>
-                        <input type="text" class="form-control" name="txtCatId" readonly value="1">
+                        <input type="text" class="form-control" name="ma_tloai" readonly value='<?php echo $row['ma_tloai']?>'>
                     </div>
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên thể loại</span>
-                        <input type="text" class="form-control" name="txtCatName" value = "Nhạc trữ tình">
+                        <input type="text" class="form-control" name="ten_tloai" value = '<?php echo $row['ten_tloai']?>'>
                     </div>
 
                     <div class="form-group  float-end ">
