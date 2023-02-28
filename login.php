@@ -1,24 +1,35 @@
 <?php
-   
-     if(isset($_POST['Login'])==true){
-        $username = $_POST['user_name'];
-        $password = $_POST['password'];
-        $conn = new PDO("mysql:host=localhost;dbname=btth01_cse485;charset=utf8","root","");
-        $conn->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM tbl_user where $username='user_name' AND $password='password' ";
-        $stmt= $conn->prepare($sql);
-        $stmt->execute([$username,$password ]);
-        if($stmt->rowCount() ==1){
-            $user = $stmt->fetch();
-            print_r($user);
+    session_start();
+     //print_r($_POST);
+    if(isset($_POST['nutdangnhap'])==true)
+    {
+        $tendangnhap = $_POST['tendangnhap'];
+        $matkhau = $_POST['matkhau'];
+    //echo"<p> $tendangnhap $matkhau </p>";
+    $conn = new PDO("mysql:host=localhost;dbname=btth01_cse485;charset=utf8", "root" , "");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "SELECT * FROM tbl_user WHERE user_name = ? AND password = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$tendangnhap, $matkhau ]);
+    if($stmt->rowCount() ==1){
+           $user = $stmt->fetch();
+           print_r($user);
+           $_SESSION['login_id'] = $user['user_id'];
+           $_SESSION['login_user']=$user['user_name'];
+        //    echo "Đăng nhập thành công";
+        //    print_r($_SESSION);
+        if($tendangnhap=="admin" && $matkhau=="admin"){
+            header("location:admin");
+            exit();
         }
         else{
-              echo"đăng nhập sai";
+            header("location:index.php");
         }
-     }
-
-
-
+    }
+    else{
+          echo"đăng nhập sai";
+    }
+    }      
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,19 +88,19 @@
                         <form  method="POST">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtUser"><i class="fas fa-user"></i></span>
-                                <input value="<?php if(isset($username)==true)echo $username ?>" type="text" class="form-control" placeholder="user_name" name="user_name" >
+                                <input value="<?php if(isset($tendangnhap)==true)echo $tendangnhap ?>" type="text" name="tendangnhap" class="form-control" placeholder="username" >
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtPass"><i class="fas fa-key"></i></span>
-                                <input value="<?php if(isset($password)==true)echo $password ?>" type="text" class="form-control" placeholder="password" name="password" >
+                                <input value="<?php if(isset($matkhau)==true)echo $matkhau ?>" type="password" class="form-control" name="matkhau" placeholder="password" >
                             </div>
                             
                             <div class="row align-items-center remember">
                                 <input type="checkbox">Remember Me
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="Login" value="Login" class="btn float-end login_btn">
+                                <input type="submit" name="nutdangnhap" value="Login" class="btn float-end login_btn">
                             </div>
                         </form>
                     </div>
